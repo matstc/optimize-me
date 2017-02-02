@@ -1,21 +1,43 @@
+const sortable = require('sortablejs')
+
 document.addEventListener('DOMContentLoaded', function(){
+  let dots = document.querySelector('#dots')
+  dots.style.position = 'relative'
+
   let addDot = function(){
-    let dots = document.querySelector('#dots')
     let content = dots.textContent
     dots.textContent = content + " ."
+    dots.style.left = Math.random() * 20 - 10
   }
 
-  setInterval(addDot, 1000)
+  setInterval(addDot, 17)
 })
 
-window.addEventListener('load', function(){
-  let link = document.createElement('link')
-  link.href = 'public/second.css'
-  link.rel = 'stylesheet'
-  document.body.appendChild(link)
-
-  let font = document.createElement('link')
-  font.href = 'https://fonts.googleapis.com/css?family=Sansita:400,400i,700,700i,800,800i,900,900i'
-  font.rel = 'stylesheet'
-  document.body.appendChild(font)
+document.addEventListener('DOMContentLoaded', function(){
+  let el = document.getElementById('items');
+  sortable.create(el);
 })
+
+document.addEventListener('DOMContentLoaded', function(){
+  let button = document.querySelector('button')
+  button.addEventListener('click', function(){
+    let sequence = fibonacciSequence(39)
+    let div = document.createElement('div')
+    div.textContent = sequence.join(' ')
+    button.parentNode.appendChild(div, button)
+  })
+})
+
+function fibonacciSequence(n){
+  let sequence = [];
+  for (let i = 0; i <= n; i++){
+    sequence.push(fibonacci(i));
+  }
+  return sequence;
+}
+
+function fibonacci(n) {
+   return n < 1 ? 0
+        : n <= 2 ? 1
+        : fibonacci(n - 1) + fibonacci(n - 2);
+}
