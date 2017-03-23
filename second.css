@@ -1,8 +1,4 @@
-* {
-  font-family:Sansita, sans-serif;
-}
-
-section {margin:45px 0;}
+img {max-width:100%;}
 
 #items {
   list-style-type: none;
