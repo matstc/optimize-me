@@ -1,5 +1,7 @@
 img {max-width:100%;}
 
+h1 {font-size: 250%; border-bottom: 1px solid #ddd; text-transform: uppercase; text-align:center; margin:25px  0;}
+
 #items {
   list-style-type: none;
   padding-left:0;
