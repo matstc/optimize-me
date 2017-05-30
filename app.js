@@ -1,21 +1,40 @@
 const sortable = require('sortablejs')
+let intervalId = null
 
-document.addEventListener('DOMContentLoaded', function() {
-  let dots = document.querySelector('#dots')
-  dots.style.position = 'relative'
+document.addEventListener('click', function(e) {
+  if (e.target.matches('section#animation button#start')) {
+    let objects = []
+    const colors = ['red', 'orange', 'blue', 'yellow']
 
-  let addDot = function() {
-    let content = dots.textContent
-    dots.textContent = content + " ."
-    dots.style.left = Math.random() * 20 - 10
+    let addObject = function() {
+      let div = document.createElement('div')
+      div.style.width = '64px'
+      div.style.height = '64px'
+      div.style.borderRadius = '50%'
+      div.style.position = 'absolute'
+      div.style.left = '50px'
+      div.style.top = '450px'
+      div.style.backgroundColor = colors[parseInt(Math.random() * 4, 10)]
+      objects.push(div)
+      document.querySelector('section#animation').appendChild(div)
+
+      for(let object of objects){
+        object.style.left = parseInt(object.style.left) + Math.random() * 10
+        object.style.top = parseInt(object.style.top) - Math.random() * 10
+      }
+    }
+
+    intervalId = setInterval(addObject, 17)
   }
 
-  setInterval(addDot, 17)
+  if (e.target.matches('section#animation button#stop')){
+    clearInterval(intervalId)
+  }
 })
 
 document.addEventListener('DOMContentLoaded', function() {
-  let el = document.getElementById('items');
-  sortable.create(el);
+  let el = document.getElementById('items')
+  sortable.create(el)
 })
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -31,11 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function fibonacciSequence(n) {
   let sequence = [];
   for (let i = 0; i <= n; i++) {
-    sequence.push(fibonacci(i));
+    sequence.push(fibonacci(i))
   }
-  return sequence;
+  return sequence
 }
 
 function fibonacci(n) {
-  return n < 1 ? 0 : n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2);
+  return n < 1 ? 0 : n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2)
 }
