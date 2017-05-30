@@ -16,6 +16,7 @@ document.addEventListener('click', function(e) {
       div.style.top = '450px'
       div.style.backgroundColor = colors[parseInt(Math.random() * 4, 10)]
       objects.push(div)
+      document.querySelector('section#animation #object-count').textContent = `${objects.length} objects`
       document.querySelector('section#animation').appendChild(div)
 
       for(let object of objects){
